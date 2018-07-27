@@ -1,0 +1,57 @@
+<h1>Eat da Burger!</h1>
+
+<h2>Burgers to eat:</h2>
+
+<ul>
+  {{#each burgers}}
+    
+  {{/each}}
+</ul>
+
+<h2>Burgers eaten:</h2>
+
+<ul>
+  {{#each burgers}}
+    
+  {{/each}}
+</ul>
+
+<h2>Add a burger</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="ca" name="name">
+  </div>
+
+  <div class="form-group">
+      
+  </div>
+
+  <button type="submit">Add a burger</button>
+</form>
+
+<script>
+    
+
+$(".create-form").on("submit", function(event) {    
+    event.preventDefault();
+    console.log("clicked");
+    var newBurger = {
+      name: $("#ca").val().trim(),
+      
+    };   
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created new burger");        
+        location.reload();
+      }
+    );
+  });
+
+
+
+</script>
